@@ -1,0 +1,9 @@
+<?xml version='1.0' ?>
+<codeFramework xmlns="http://www.3ds.ic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.3ds.ic ICModel.xsd">
+  <prerequisite name="System" access="Public"/>
+  <prerequisite name="ObjectModelerBase" access="Public"/>
+  <prerequisite name="ApplicationFrame" access="Public"/>
+  <prerequisite name="ObjectSpecsModeler" access="Public"/>
+  <prerequisite name="MechanicalModeler" access="Public"/>
+  <prerequisite name="XMLParser" access="Public"/>
+</codeFramework>

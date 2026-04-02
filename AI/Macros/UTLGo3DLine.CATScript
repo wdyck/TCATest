@@ -1,0 +1,49 @@
+Language="VBSCRIPT"
+ 
+Sub CATMain()
+ 
+Set objShell = CreateObject("WScript.Shell")
+x1 = objShell.Environment("PROCESS")("x1")
+y1 = objShell.Environment("PROCESS")("y1")
+z1 = objShell.Environment("PROCESS")("z1")
+
+x2 = objShell.Environment("PROCESS")("x2")
+y2 = objShell.Environment("PROCESS")("y2")
+z2 = objShell.Environment("PROCESS")("z2")
+
+Dim partDocument1 As Document
+Set partDocument1 = CATIA.ActiveDocument
+
+Dim part1 As Part
+Set part1 = partDocument1.Part
+
+Dim hybridBodies1 As HybridBodies
+Set hybridBodies1 = part1.HybridBodies
+
+Dim hybridBody1 As HybridBody
+Set hybridBody1 = hybridBodies1.Add()
+
+Dim hybridShapeFactory1 As Factory
+Set hybridShapeFactory1 = part1.HybridShapeFactory
+
+Dim hybridShapePointCoord1 As HybridShapePointCoord
+Dim hybridShapePointCoord2 As HybridShapePointCoord
+Set hybridShapePointCoord1 = hybridShapeFactory1.AddNewPointCoord(x1 , y1 , z1  )
+Set hybridShapePointCoord2 = hybridShapeFactory1.AddNewPointCoord(x2 , y2 , z2  )
+
+hybridBody1.AppendHybridShape hybridShapePointCoord1
+hybridBody1.AppendHybridShape hybridShapePointCoord2
+
+Set reference1 = part1.CreateReferenceFromObject(hybridShapePointCoord1)
+Set reference2 = part1.CreateReferenceFromObject(hybridShapePointCoord2)
+
+Set hybridShapeLinePtPt1 = hybridShapeFactory1.AddNewLinePtPt(reference1, reference2)
+
+hybridBody1.AppendHybridShape hybridShapeLinePtPt1
+
+part1.InWorkObject = hybridShapeLinePtPt1
+
+
+part1.Update 
+
+End Sub

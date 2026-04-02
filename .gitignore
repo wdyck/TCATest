@@ -1,0 +1,13 @@
+.#*
+*.gv
+CVS/
+ImportedInterfaces/
+various/
+Objects/
+LocalGenerated/
+ProtectedGenerated/
+ToolsData/
+win_b64/
+CATEnv/WorkspaceEnv.txt
+CATIAV5Level.lvl
+Install_config_win_b64

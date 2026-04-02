@@ -1,0 +1,65 @@
+Language="VBSCRIPT"
+
+Sub CATMain()
+
+Set objShell = CreateObject("WScript.Shell")
+x1 = objShell.Environment("PROCESS")("x1")
+y1 = objShell.Environment("PROCESS")("y1")
+z1 = objShell.Environment("PROCESS")("z1")
+
+x2 = objShell.Environment("PROCESS")("x2")
+y2 = objShell.Environment("PROCESS")("y2")
+z2 = objShell.Environment("PROCESS")("z2")
+
+x3 = objShell.Environment("PROCESS")("x3")
+y3 = objShell.Environment("PROCESS")("y3")
+z3 = objShell.Environment("PROCESS")("z3")
+
+Dim partDocument1 As Document
+Set partDocument1 = CATIA.ActiveDocument
+
+Dim part1 As Part
+Set part1 = partDocument1.Part
+
+Dim hybridBodies1 As HybridBodies
+Set hybridBodies1 = part1.HybridBodies
+
+Dim hybridBody1 As HybridBody
+Set hybridBody1 = hybridBodies1.Add()
+
+Dim hybridShapeFactory1 As Factory
+Set hybridShapeFactory1 = part1.HybridShapeFactory
+
+Dim hybridShapePointCoord1 As HybridShapePointCoord
+Dim hybridShapePointCoord2 As HybridShapePointCoord
+Dim hybridShapePointCoord3 As HybridShapePointCoord
+Set hybridShapePointCoord1 = hybridShapeFactory1.AddNewPointCoord(x1 , y1 , z1  )
+Set hybridShapePointCoord2 = hybridShapeFactory1.AddNewPointCoord(x2 , y2 , z2  )
+Set hybridShapePointCoord3 = hybridShapeFactory1.AddNewPointCoord(x3 , y3 , z3  )
+
+part1.InWorkObject = hybridShapePointCoord1
+part1.Update
+part1.InWorkObject = hybridShapePointCoord2
+part1.Update 
+part1.InWorkObject = hybridShapePointCoord3
+part1.Update 
+
+Dim reference1 As Reference
+Set reference1 = part1.CreateReferenceFromObject(hybridShapePointCoord1)
+
+Dim reference2 As Reference
+Set reference2 = part1.CreateReferenceFromObject(hybridShapePointCoord2)
+
+Dim reference3 As Reference
+Set reference3 = part1.CreateReferenceFromObject(hybridShapePointCoord3)
+
+Dim hybridShapePlane3Points1 As HybridShapePlane3Points
+Set hybridShapePlane3Points1 = hybridShapeFactory1.AddNewPlane3Points(reference1, reference2, reference3)
+
+hybridBody1.AppendHybridShape hybridShapePlane3Points1
+
+part1.InWorkObject = hybridShapePlane3Points1
+
+part1.Update 
+
+End Sub

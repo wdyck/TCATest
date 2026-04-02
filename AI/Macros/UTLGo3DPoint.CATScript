@@ -1,0 +1,36 @@
+Language="VBSCRIPT"
+ 
+Sub CATMain()
+ 
+Set objShell = CreateObject("WScript.Shell")
+x_coord = objShell.Environment("PROCESS")("x1")
+y_coord = objShell.Environment("PROCESS")("y1")
+z_coord = objShell.Environment("PROCESS")("z1")
+
+Dim partDocument1 As Document
+Set partDocument1 = CATIA.ActiveDocument
+
+Dim part1 As Part
+Set part1 = partDocument1.Part
+
+Dim hybridBodies1 As HybridBodies
+Set hybridBodies1 = part1.HybridBodies
+
+Dim hybridBody1 As HybridBody
+Set hybridBody1 = hybridBodies1.Add()
+
+Dim hybridShapeFactory1 As Factory
+Set hybridShapeFactory1 = part1.HybridShapeFactory
+
+
+
+Dim hybridShapePointCoord1 As HybridShapePointCoord
+Set hybridShapePointCoord1 = hybridShapeFactory1.AddNewPointCoord(x_coord , y_coord , z_coord  )
+
+hybridBody1.AppendHybridShape hybridShapePointCoord1
+
+part1.InWorkObject = hybridShapePointCoord1
+
+part1.Update 
+
+End Sub
