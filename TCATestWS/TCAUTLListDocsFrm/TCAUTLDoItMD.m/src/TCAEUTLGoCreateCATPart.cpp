@@ -53,7 +53,7 @@ TCAEUTLGoCreateCATPart::~TCAEUTLGoCreateCATPart()
 //-----------------------------------------------------------------------------
 HRESULT TCAEUTLGoCreateCATPart::getInfo(CATUnicodeString& o_rInfo)
 {
-  o_rInfo = "Creates part document CATPart";
+  o_rInfo = "Creates CATPart with XY-plane hexagon sketch (100mm diameter)";
   return S_OK;
 } // getInfo
 
