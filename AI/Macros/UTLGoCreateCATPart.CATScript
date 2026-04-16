@@ -32,22 +32,22 @@ part1.InWorkObject = sketch1
 Dim factory2D1 As Factory2D
 Set factory2D1 = sketch1.OpenEdition()
 
-Dim pi
-pi = 4 * Atn(1)
+Dim PI
+PI = 4 * Atn(1)
 
 Dim radius
 radius = 50
 
-Dim x(5)
-Dim y(5)
+Dim vertexX(5)
+Dim vertexY(5)
 Dim i
 For i = 0 To 5
-  x(i) = radius * Cos((i * pi) / 3)
-  y(i) = radius * Sin((i * pi) / 3)
+  vertexX(i) = radius * Cos((i * PI) / 3)
+  vertexY(i) = radius * Sin((i * PI) / 3)
 Next
 
 For i = 0 To 5
-  factory2D1.CreateLine x(i), y(i), x((i + 1) Mod 6), y((i + 1) Mod 6)
+  factory2D1.CreateLine vertexX(i), vertexY(i), vertexX((i + 1) Mod 6), vertexY((i + 1) Mod 6)
 Next
 
 sketch1.CloseEdition
