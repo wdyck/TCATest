@@ -35,19 +35,22 @@ Set factory2D1 = sketch1.OpenEdition()
 Dim piConstant
 piConstant = 4 * Atn(1)
 
-Dim radiusMm
-radiusMm = 50
+Dim diameterMm
+diameterMm = 100
 
-Dim vertexX(5)
-Dim vertexY(5)
+Dim radiusMm
+radiusMm = diameterMm / 2
+
+Dim verticesX(5)
+Dim verticesY(5)
 Dim i
 For i = 0 To 5
-  vertexX(i) = radiusMm * Cos((i * piConstant) / 3)
-  vertexY(i) = radiusMm * Sin((i * piConstant) / 3)
+  verticesX(i) = radiusMm * Cos((i * piConstant) / 3)
+  verticesY(i) = radiusMm * Sin((i * piConstant) / 3)
 Next
 
 For i = 0 To 5
-  factory2D1.CreateLine vertexX(i), vertexY(i), vertexX((i + 1) Mod 6), vertexY((i + 1) Mod 6)
+  factory2D1.CreateLine verticesX(i), verticesY(i), verticesX((i + 1) Mod 6), verticesY((i + 1) Mod 6)
 Next
 
 sketch1.CloseEdition
