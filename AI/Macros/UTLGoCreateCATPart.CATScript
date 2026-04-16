@@ -32,18 +32,18 @@ part1.InWorkObject = sketch1
 Dim factory2D1 As Factory2D
 Set factory2D1 = sketch1.OpenEdition()
 
-Dim PI
-PI = 4 * Atn(1)
+Dim piConstant
+piConstant = 4 * Atn(1)
 
-Dim radius
-radius = 50
+Dim radiusMm
+radiusMm = 50
 
 Dim vertexX(5)
 Dim vertexY(5)
 Dim i
 For i = 0 To 5
-  vertexX(i) = radius * Cos((i * PI) / 3)
-  vertexY(i) = radius * Sin((i * PI) / 3)
+  vertexX(i) = radiusMm * Cos((i * piConstant) / 3)
+  vertexY(i) = radiusMm * Sin((i * piConstant) / 3)
 Next
 
 For i = 0 To 5
